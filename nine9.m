@@ -1,0 +1,15 @@
+Wp=0.2*pi;
+Ws=0.6*pi;
+Rp=0.4;
+Rs=50;
+Fs=100000;
+Omp=tan(Wp/2);
+Oms=tan(Ws/2);
+[N,Wn]=buttord(Omp,Oms,Rp,Rs,'s');
+[B,A]=butter(N,Omp,'s');
+[b1,a1]=bilinear(B,A,0.5);
+[h1,w1]=freqz(b1,a1);
+gain1=20*log10(abs(h1));
+plot(gain1);
+xlabel('w(pi)');
+ylabel('Gain,dB');
